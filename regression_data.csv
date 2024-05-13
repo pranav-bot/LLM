@@ -1,0 +1,1483 @@
+Prompt,Code
+"Write python functions to make a machine learning Linear regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def LinearRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LinearRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Ridge regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def RidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Ridge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Lasso regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def LassoRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Lasso()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LassoRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Bayesian regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import BayesianRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def BayesianRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = BayesianRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = BayesianRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SGD regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import SGDRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def SGDRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SGDRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SGDRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KernelRidge regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def KernelRidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KernelRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KernelRidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SVM regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.svm.SVR import SVR
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def SVMRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SVR()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SVMRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KNeighbors regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def KNeighborsRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KNeighborsRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KNeighborsRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning GaussianProcessRegressor regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def GaussianProcessRegressorRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = GaussianProcessRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = GaussianProcessRegressorRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning PLS regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.cross_decomposition import PLSRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def PLSRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = PLSRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = PLSRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning DecisionTree regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def DecisionTreeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = DecisionTreeRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = DecisionTreeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning MLP regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def MLPRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = MLPRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = MLPRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning RandomForest regression model based on a dataset named winequality-red having columns ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality'] with the target variable being quality having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/winequality-red_preprocessed.csv')
+target_variable = 'quality'
+
+def RandomForestRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RandomForestRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Linear regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def LinearRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LinearRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Ridge regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def RidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Ridge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Lasso regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def LassoRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Lasso()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LassoRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Bayesian regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import BayesianRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def BayesianRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = BayesianRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = BayesianRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SGD regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import SGDRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def SGDRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SGDRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SGDRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KernelRidge regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def KernelRidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KernelRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KernelRidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SVM regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.svm.SVR import SVR
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def SVMRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SVR()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SVMRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KNeighbors regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def KNeighborsRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KNeighborsRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KNeighborsRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning GaussianProcessRegressor regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def GaussianProcessRegressorRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = GaussianProcessRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = GaussianProcessRegressorRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning PLS regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.cross_decomposition import PLSRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def PLSRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = PLSRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = PLSRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning DecisionTree regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def DecisionTreeRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = DecisionTreeRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = DecisionTreeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning MLP regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def MLPRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = MLPRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = MLPRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning RandomForest regression model based on a dataset named Student_Performance having columns ['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced', 'Performance Index'] with the target variable being Performance Index having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/Student_Performance_preprocessed.csv')
+target_variable = 'Performance Index'
+
+def RandomForestRegressionModel(df, target_variable):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=[target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RandomForestRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Linear regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def LinearRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LinearRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Ridge regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def RidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Ridge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Lasso regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def LassoRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = Lasso()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = LassoRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning Bayesian regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import BayesianRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def BayesianRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = BayesianRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = BayesianRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SGD regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.linear_model import SGDRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def SGDRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SGDRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SGDRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KernelRidge regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def KernelRidgeRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KernelRidge()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KernelRidgeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning SVM regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.svm.SVR import SVR
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def SVMRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = SVR()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = SVMRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning KNeighbors regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def KNeighborsRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = KNeighborsRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = KNeighborsRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning GaussianProcessRegressor regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def GaussianProcessRegressorRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = GaussianProcessRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = GaussianProcessRegressorRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning PLS regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.cross_decomposition import PLSRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def PLSRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = PLSRegression()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = PLSRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning DecisionTree regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def DecisionTreeRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = DecisionTreeRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = DecisionTreeRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning MLP regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def MLPRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = MLPRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = MLPRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
+"Write python functions to make a machine learning RandomForest regression model based on a dataset named kc_house_data having columns ['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode', 'lat', 'long', 'sqft_living15', 'sqft_lot15'] with the target variable being price having the regression evaluation metrics mse,mae,r2,rmse","
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_error
+
+
+df = pd.read_csv('./csv_data/kc_house_data_preprocessed.csv')
+target_variable = 'price'
+
+def RandomForestRegressionModel(df, target_variable):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_regression(model, df):
+    X = df.drop(columns=['id', 'date',target_variable])
+    y = df[target_variable]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred)**0.5
+    return mse, r2, mae, rmse
+
+model = RandomForestRegressionModel(df, target_variable=target_variable)
+
+mse, r2, mae, rmse = evaluate_regression(model, df)
+
+print(""MSE for the Regression model: ""+mse)
+print(""MAE for the Regression model: ""+mae)
+print(""R2 for the Regression model: ""+r2)
+print(""RMSE for the Regression model: ""+rmse)
+"
