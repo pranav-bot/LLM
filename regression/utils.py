@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
 from sklearn.ensemble import IsolationForest
@@ -80,7 +81,10 @@ def perform_eda(df):
     for column in numerical_columns:
         min_val = df[column].min()
         max_val = df[column].max()
-        range_val = max_val - min_val
+        if isinstance(max_val, np.bool_) and isinstance(min_val, np.bool_):
+            range_val = np.logical_xor(max_val, min_val)
+        else:
+            range_val = max_val - min_val
         if range_val > 2000:
             feature_scaler[column] = StandardScaler()
         elif min_val >=0:
@@ -129,6 +133,14 @@ def prepreocess(df, eda_results):
     ------------------------------------------------------------------------
     """
 
+    if len(df.columns) <= 2:
+        imputer = SimpleImputer(strategy='mean')
+        columns_to_impute_mean = []
+        for column in eda_results['numerical_columns']:
+            if df[column].nunique() >10:
+                columns_to_impute_mean.append(column)
+        df[columns_to_impute_mean] = imputer.fit_transform(df[columns_to_impute_mean])
+    return df
     #handling missing values
     if eda_results['missing_values']:
         imputer = SimpleImputer(strategy='mean')
