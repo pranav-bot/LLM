@@ -1,2 +1,5 @@
 /classification/__pycache__
 /regression/__pycache__
+/regression/csv_data
+/regression/csv_data2
+regression/.env

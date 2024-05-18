@@ -1,0 +1,31 @@
+AmesHousing.csv
+Automobile.csv
+CarPrice_Assignment.csv
+GOOG.csv
+HRDataset_v14.csv
+ParisHousing.csv
+SAT__College_Board__2010_School_Level_Results_20240506.csv
+Salary_dataset.csv
+Steel_industry_data.csv
+Student_Performance.csv
+Walmart.csv
+air-passengers-carried new.csv
+car data.csv
+daily-website-visitors.csv
+data.csv
+dataset.csv
+diamonds.csv
+forestfires.csv
+garments_worker_productivity.csv
+insurance.csv
+kc_house_data.csv
+manufacturing.csv
+multiple_linear_regression_dataset.csv
+possum.csv
+song_data.csv
+toughestsport.csv
+train.csv
+train_ML_IOT.csv
+uber.csv
+war_survival_data.csv
+winequality-red.csv
