@@ -1,20 +1,21 @@
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Load the dataset
-df = pd.read_csv('Classification/preprocessed_data/p_train.csv')
+df = pd.read_csv('Classification/preprocessed_data/MobilePrice.csv')
 
 # Define target variable
 target_variable = "price_range"
 
-# Function to train logistic regression model
-def LogisticRegressionModel(df, target_variable, fit_intercept=True, solver='liblinear'):
+
+# Function to train SVM model
+def SVMModel(df, target_variable, kernel='rbf', C=1.0, gamma='scale'):
     X = df.drop(columns=[target_variable])
     y = df[target_variable]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = LogisticRegression(fit_intercept=fit_intercept, solver=solver)
+    model = SVC(kernel=kernel, C=C, gamma=gamma)
     model.fit(X_train, y_train)
     return model
 
@@ -30,14 +31,14 @@ def evaluate_classification(model, df):
     f1 = f1_score(y_test, y_pred, average='weighted')
     return accuracy, precision, recall, f1
 
-# Train logistic regression model
-model = LogisticRegressionModel(df, target_variable=target_variable)
+# Train SVM model
+model = SVMModel(df, target_variable=target_variable)
 
 # Evaluate the model
 accuracy, precision, recall, f1 = evaluate_classification(model, df)
 
 # Print evaluation metrics
-print("Accuracy for the Logistic Regression model: {:.2f}".format(accuracy))
-print("Precision for the Logistic Regression model: {:.2f}".format(precision))
-print("Recall for the Logistic Regression model: {:.2f}".format(recall))
-print("F1 Score for the Logistic Regression model: {:.2f}".format(f1))
+print("Accuracy for the SVM model: {:.2f}".format(accuracy))
+print("Precision for the SVM model: {:.2f}".format(precision))
+print("Recall for the SVM model: {:.2f}".format(recall))
+print("F1 Score for the SVM model: {:.2f}".format(f1))
