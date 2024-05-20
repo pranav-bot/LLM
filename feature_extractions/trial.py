@@ -1,26 +1,36 @@
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 import pandas as pd
-from transformers import GPT2TokenizerFast
 
-# Load your dataset
 data = pd.read_csv("Drug.csv")
 
-# Select features (assuming you want to analyze all)
 features = data.columns.tolist()
+print(features)
 
-# Initialize LLM pipeline (replace 'text-davinci-003' with your preferred model)
-tokenizer = GPT2TokenizerFast.from_pretrained('Xenova/text-davinci-003')
+# Prepare the input as before
+chat = [
+    {"role": "system", "content": "You are a machine lerning expert"},
+    {"role": "user", "content": f"This dataset contains information about [dataset topic]. Analyze the feature '{feature_name}' and describe its relevance to understanding [target variable] or achieving the overall goal."}
+]
 
-def analyze_feature(feature_name):
-  # Prepare prompt (replace with your specific prompt template)
-  prompt = f"This dataset contains information about [dataset topic]. Analyze the feature '{feature_name}' and describe its relevance to understanding [target variable] or achieving the overall goal."
+# 1: Load the model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("davidkim205/Rhea-72b-v0.5")
+model = AutoModelForCausalLM.from_pretrained("davidkim205/Rhea-72b-v0.5")
 
-  # Send prompt to LLM and get response
-  response = tokenizer(prompt, max_length=100, truncation=True)[0]["generated_text"]
-  print(f"Feature: {feature_name}\nLLM Analysis: {response}\n")
+# 2: Apply the chat template
+formatted_chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+print("Formatted chat:\n", formatted_chat)
 
-# Analyze each feature
-for feature in features:
-  analyze_feature(feature)
+# 3: Tokenize the chat (This can be combined with the previous step using tokenize=True)
+inputs = tokenizer(formatted_chat, return_tensors="pt", add_special_tokens=False)
+# Move the tokenized inputs to the same device the model is on (GPU/CPU)
+inputs = {key: tensor.to(model.device) for key, tensor in inputs.items()}
+print("Tokenized inputs:\n", inputs)
 
-# Additional steps: Refine prompts based on LLM responses, make decisions about dropping features
+# 4: Generate text from the model
+outputs = model.generate(**inputs, max_new_tokens=512, temperature=0.)
+print("Generated tokens:\n", outputs)
 
+# 5: Decode the output back to a string
+decoded_output = tokenizer.decode(outputs[0][inputs['input_ids'].size(1):], skip_special_tokens=True)
+print("Decoded output:\n", decoded_output)
