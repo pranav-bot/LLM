@@ -73,7 +73,7 @@ hyperparameters = {
 prompt_code_pairs = []
 
 for data in datasets:
-    df = pd.read_csv('regression/csv_data/' + data)
+    df = pd.read_csv('regression/regression_data/' + data)
     columns = list(df.columns)
 
     for target_variable in target_variables[data]:

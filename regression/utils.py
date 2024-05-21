@@ -1,9 +1,12 @@
 import pandas as pd
-import numpy as np
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
+from sklearn.decomposition import PCA
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 import re
 
 # ------------------------------------------------------------------------
@@ -51,8 +54,7 @@ def perform_eda(df):
     eda_results = {}
 
     #cheking for missing values
-    eda_results['missing_values'] = df.isnull().sum().any()
-
+    eda_results['missing_values_count'] = df.isnull().sum().any()
     #Finding all columns in the dataset
     columns = df.columns
     eda_results['columns'] = columns.tolist()
@@ -81,16 +83,14 @@ def perform_eda(df):
     for column in numerical_columns:
         min_val = df[column].min()
         max_val = df[column].max()
-        if isinstance(max_val, np.bool_) and isinstance(min_val, np.bool_):
-            range_val = np.logical_xor(max_val, min_val)
-        else:
-            range_val = max_val - min_val
-        if range_val > 2000:
-            feature_scaler[column] = StandardScaler()
-        elif min_val >=0:
-            feature_scaler[column] = MinMaxScaler()
-        else:
-            feature_scaler[column] = RobustScaler()
+        range_val = max_val - min_val
+        if df[column].nunique() > 10:
+            if range_val > 2000:
+                feature_scaler[column] = StandardScaler()
+            elif min_val >= 10:
+                feature_scaler[column] = MinMaxScaler()
+            else:
+                feature_scaler[column] = RobustScaler()
 
     eda_results['scaling_techniques'] = feature_scaler
 
@@ -132,35 +132,49 @@ def prepreocess(df, eda_results):
 
     ------------------------------------------------------------------------
     """
-
     if len(df.columns) <= 2:
         imputer = SimpleImputer(strategy='mean')
         columns_to_impute_mean = []
         for column in eda_results['numerical_columns']:
-            if df[column].nunique() >10:
+            if df[column].nunique()>10:
                 columns_to_impute_mean.append(column)
         df[columns_to_impute_mean] = imputer.fit_transform(df[columns_to_impute_mean])
     return df
     #handling missing values
-    if eda_results['missing_values']:
+    columns_to_impute_mean = []
+    if eda_results['missing_values_count']:
         imputer = SimpleImputer(strategy='mean')
         columns_to_impute_mean = []
         for column in eda_results['numerical_columns']:
-            if df[column].nunique() >10:
+            if df[column].nunique() >=10:
                 columns_to_impute_mean.append(column)
         df[columns_to_impute_mean] = imputer.fit_transform(df[columns_to_impute_mean])
-        imputer = SimpleImputer(strategy='most_frequent')
-        columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
-        df[columns_to_impute_mode] = imputer.fit_transform(df[columns_to_impute_mode])
+        # imputer = SimpleImputer(strategy='most_frequent')
+        # columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
+        # df[columns_to_impute_mode] = int(imputer.fit_transform(df[columns_to_impute_mode]))
 
     #Feature Scaling
     for column, scaler in eda_results['scaling_techniques'].items():
-        df[column] = scaler.fit_transform(pd.DataFrame(df[column]))
+        df[column] = scaler.fit_transform(pd.DataFrame(df[column])).astype(int)
 
     #encoding
     for column in eda_results['categorical_columns']:
-        if df[column].nunique()<10:
+        if df[column].nunique()<=10:
             df[column] = LabelEncoder().fit_transform(df[column])
+        imputer = SimpleImputer(strategy='most_frequent')
+        columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
+        df[columns_to_impute_mode] = (imputer.fit_transform(df[columns_to_impute_mode]))
+        # else: 
+        #         df[column] = df[column].apply(nltk.word_tokenize)
+
+        #         # Lowercase words
+        #         df[column] = df[column].apply(lambda x: [word.lower() for word in x])
+
+        #         stop_words = stopwords.words('english')
+        #         df[column] = df[column].apply(lambda x: [word for word in x if word not in stop_words])
+
+        #         lemmatizer = WordNetLemmatizer()
+        #         df[column] = df[column].apply(lambda x: [lemmatizer.lemmatize(word) for word in x])
 
     #date handling
     date_patterns = [
@@ -214,4 +228,17 @@ def prepreocess(df, eda_results):
         except:
             pass
 
+
+    # Performing PCA    
+    # pca = PCA(n_components=0.95)  # Retain 95% of variance
+    # df = pca.fit_transform(df)
+
+    # # Combine PCA components with datetime columns
+    # df = pd.DataFrame(df, columns=[f'PCA_{i}' for i in range(df.shape[1])])
+
+    # # Rename PCA columns to original column names
+    # pca_column_mapping = {f'PCA_{i}': col for i, col in enumerate(df.columns)}
+    # df.rename(columns=pca_column_mapping, inplace=True)
+
     return df
+

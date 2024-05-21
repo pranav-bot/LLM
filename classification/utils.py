@@ -132,17 +132,26 @@ def prepreocess(df, eda_results):
 
     ------------------------------------------------------------------------
     """
+    if len(df.columns) <= 2:
+        imputer = SimpleImputer(strategy='mean')
+        columns_to_impute_mean = []
+        for column in eda_results['numerical_columns']:
+            if df[column].nunique()>10:
+                columns_to_impute_mean.append(column)
+        df[columns_to_impute_mean] = imputer.fit_transform(df[columns_to_impute_mean])
+    return df
     #handling missing values
+    columns_to_impute_mean = []
     if eda_results['missing_values_count']:
         imputer = SimpleImputer(strategy='mean')
         columns_to_impute_mean = []
         for column in eda_results['numerical_columns']:
-            if df[column].nunique() >10:
+            if df[column].nunique() >=10:
                 columns_to_impute_mean.append(column)
         df[columns_to_impute_mean] = imputer.fit_transform(df[columns_to_impute_mean])
-        imputer = SimpleImputer(strategy='most_frequent')
-        columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
-        df[columns_to_impute_mode] = int(imputer.fit_transform(df[columns_to_impute_mode]))
+        # imputer = SimpleImputer(strategy='most_frequent')
+        # columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
+        # df[columns_to_impute_mode] = int(imputer.fit_transform(df[columns_to_impute_mode]))
 
     #Feature Scaling
     for column, scaler in eda_results['scaling_techniques'].items():
@@ -150,19 +159,22 @@ def prepreocess(df, eda_results):
 
     #encoding
     for column in eda_results['categorical_columns']:
-        if df[column].nunique()<10:
+        if df[column].nunique()<=10:
             df[column] = LabelEncoder().fit_transform(df[column])
-        else: 
-                df[column] = df[column].apply(nltk.word_tokenize)
+        imputer = SimpleImputer(strategy='most_frequent')
+        columns_to_impute_mode = [col for col in df.columns if col not in columns_to_impute_mean]
+        df[columns_to_impute_mode] = (imputer.fit_transform(df[columns_to_impute_mode]))
+        # else: 
+        #         df[column] = df[column].apply(nltk.word_tokenize)
 
-                # Lowercase words
-                df[column] = df[column].apply(lambda x: [word.lower() for word in x])
+        #         # Lowercase words
+        #         df[column] = df[column].apply(lambda x: [word.lower() for word in x])
 
-                stop_words = stopwords.words('english')
-                df[column] = df[column].apply(lambda x: [word for word in x if word not in stop_words])
+        #         stop_words = stopwords.words('english')
+        #         df[column] = df[column].apply(lambda x: [word for word in x if word not in stop_words])
 
-                lemmatizer = WordNetLemmatizer()
-                df[column] = df[column].apply(lambda x: [lemmatizer.lemmatize(word) for word in x])
+        #         lemmatizer = WordNetLemmatizer()
+        #         df[column] = df[column].apply(lambda x: [lemmatizer.lemmatize(word) for word in x])
 
     #date handling
     date_patterns = [

@@ -2,4 +2,9 @@
 /regression/__pycache__
 /regression/csv_data
 /regression/csv_data2
+/regression/regression_data
 regression/.env
+classification/.env
+classification_data.csv
+regression_data.csv
+classification/classification_data

@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('API_KEy')
+API_KEY = os.getenv('API_KEY')
 
 
 genai.configure(api_key=API_KEY)
 
-current_dir = "regression/csv_data"
+current_dir = "regression/regression_data"
 files = os.listdir(current_dir)
 
 file_list = []
@@ -27,7 +27,7 @@ for file in sorted(files):
   try:
     if counter%5==0:
       time.sleep(60)  
-    df = pd.read_csv("regression/csv_data/"+ file)
+    df = pd.read_csv("regression/regression_data/"+ file)
     df = prepreocess(df, perform_eda(df))
     file_list.append(file)
     columns = list(df.columns)

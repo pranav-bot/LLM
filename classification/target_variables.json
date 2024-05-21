@@ -1,0 +1,1 @@
+{"drug200.csv": ["Sex", "BP", "Cholesterol", "Na_to_K", "Drug"], "glass.csv": ["Type"], "mushrooms.csv": ["class"], "ob.csv": ["Label"], "predictive_maintenance.csv": ["Failure Type"], "star_classification.csv": ["class", "redshift"], "tds.csv": ["Favorite Color", "Favorite Music Genre", "Favorite Beverage", "Favorite Soft Drink", "Gender"], "train":[]}
