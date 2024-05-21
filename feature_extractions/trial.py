@@ -10,7 +10,7 @@ print(features)
 # Prepare the input as before
 chat = [
     {"role": "system", "content": "You are a machine lerning expert"},
-    {"role": "user", "content": f"This dataset contains information about [dataset topic]. Analyze the feature '{feature_name}' and describe its relevance to understanding [target variable] or achieving the overall goal."}
+    {"role": "user", "content": f"This dataset contains information about [dataset topic]. Analyze the feature '{features}' and describe its relevance to understanding [target variable] or achieving the overall goal."}
 ]
 
 # 1: Load the model and tokenizer
