@@ -110,8 +110,8 @@ def speculative_sampling_with_pkv(input, draft_model, main_model, K, N=30, **kwa
     all_tokens.extend(accum_draft_tokens)
     return all_tokens
 
-main_model_id = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
-main_model_path = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
+main_model_id = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-hf")
+main_model_path = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
 draft_model_id = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 draft_model_path = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 
